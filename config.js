@@ -16,14 +16,14 @@ module.exports = {
     play: false,
   },
 
-  // 搜索检测配置（用于检测视频源是否可访问、搜索是否正常）
+  // 搜索检测配置
   // timeout: 请求超时时间（毫秒）
-  // concurrent: 并发请求数
-  // maxRetry: 最大重试次数
+  // concurrent: 仅搜索模式时的并发数（playSpeedTest.enable=false 时生效）
+  // maxRetry: 搜索失败最大重试次数
   // retryDelay: 重试间隔（毫秒）
   // keyword: 普通视频搜索关键词
   // adultKeyword: 成人视频搜索关键词
-  // headers: 请求头
+  // headers: 请求头（搜索和测速共用）
   check: {
     timeout: 5000,
     concurrent: 20,
@@ -40,11 +40,11 @@ module.exports = {
     },
   },
 
-  // 播放测速配置（用于测试视频源的实际播放速度）
+  // 播放测速配置
   // enable: 是否启用播放测速（false 时只做搜索检测）
   // episodeCount: 每个视频源测试的最大集数
   // duration: 每次测速持续时间（毫秒）
-  // concurrent: 并发测速数
+  // concurrent: 搜索+测速模式下的总并发数（enable=true 时覆盖 check.concurrent）
   playSpeedTest: {
     enable: true,
     episodeCount: 3,

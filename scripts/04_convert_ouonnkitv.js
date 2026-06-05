@@ -21,11 +21,14 @@ function getQualified(results) {
 
 function getTopFastest(records, limit) {
   return [...records]
-    .sort((a, b) =>
-      a.play.avgSpeed != null
-        ? b.play.avgSpeed - a.play.avgSpeed
-        : (a.search.duration || Infinity) - (b.search.duration || Infinity)
-    )
+    .sort((a, b) => {
+      const aSpeed = a.play.avgSpeed;
+      const bSpeed = b.play.avgSpeed;
+      if (aSpeed != null && bSpeed != null) return bSpeed - aSpeed;
+      if (aSpeed != null) return -1;
+      if (bSpeed != null) return 1;
+      return (a.search.duration || Infinity) - (b.search.duration || Infinity);
+    })
     .slice(0, limit);
 }
 

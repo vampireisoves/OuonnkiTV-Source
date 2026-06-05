@@ -36,6 +36,9 @@ function saveLog() {
 
 function loadSources() {
   const data = JSON.parse(fs.readFileSync(SOURCE_FILE, 'utf-8'));
+  if (!data?.api_site) {
+    throw new Error(`输入文件格式无效: 缺少 api_site 字段 (${SOURCE_FILE})`);
+  }
   const sources = Object.values(data.api_site).map((s) => ({
     id: s.id,
     name: s.name,
@@ -75,7 +78,8 @@ async function checkSearch(api, keyword) {
       return list.length
         ? { status: SEARCH_STATUS.SUCCESS, duration, firstVideo: list[0] }
         : { status: SEARCH_STATUS.NO_RESULTS, duration, firstVideo: null };
-    } catch {
+    } catch (err) {
+      log(`搜索请求失败 (${i}/${config.check.maxRetry}): ${err.message}`, `[${keyword}]`);
       if (i < config.check.maxRetry) await delay(config.check.retryDelay);
     }
   }
@@ -85,7 +89,7 @@ async function checkSearch(api, keyword) {
 async function getPlayLinks(api, vodId) {
   try {
     const url = proxyUrl(`${api}?ac=detail&ids=${vodId}`, config.proxy.check);
-    const res = await axiosInstance.get(url, { timeout: 5000, headers: config.check.headers });
+    const res = await axiosInstance.get(url, { timeout: config.check.timeout, headers: config.check.headers });
     const video = res.data?.list?.[0];
     if (!video?.vod_play_url) return [];
     const sources = (video.vod_play_from || '').split('$$$');
@@ -120,7 +124,7 @@ async function testPlaySpeed(videoUrl) {
       method: 'get',
       url: playUrl,
       responseType: 'stream',
-      timeout: 5000,
+      timeout: config.check.timeout,
       headers: config.check.headers,
     });
     return new Promise((resolve) => {
