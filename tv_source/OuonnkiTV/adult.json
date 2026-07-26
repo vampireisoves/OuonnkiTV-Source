@@ -63,6 +63,13 @@
     "isEnabled": true
   },
   {
+    "id": "lbapi9-com",
+    "name": "乐播资源",
+    "url": "https://lbapi9.com/api.php/provide/vod",
+    "detailUrl": "https://lbapi9.com",
+    "isEnabled": true
+  },
+  {
     "id": "Naixxzy-com",
     "name": "奶香资源",
     "url": "https://Naixxzy.com/api.php/provide/vod",
@@ -105,6 +112,13 @@
     "isEnabled": true
   },
   {
+    "id": "thzy8-me",
+    "name": "桃花资源",
+    "url": "https://thzy1.me/api.php/provide/vod",
+    "detailUrl": "https://thzy8.me",
+    "isEnabled": true
+  },
+  {
     "id": "www-jingpinx-com",
     "name": "精品资源",
     "url": "https://www.jingpinx.com/api.php/provide/vod",
@@ -123,13 +137,6 @@
     "name": "细胞资源",
     "url": "https://www.xxibaozyw.com/api.php/provide/vod",
     "detailUrl": "https://www.xxibaozyw.com",
-    "isEnabled": true
-  },
-  {
-    "id": "xiangjiaozyw-com",
-    "name": "香蕉资源",
-    "url": "https://www.xiangjiaozyw.com/api.php/provide/vod",
-    "detailUrl": "https://www.xiangjiaozyw.com",
     "isEnabled": true
   },
   {
