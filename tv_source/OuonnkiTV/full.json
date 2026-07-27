@@ -91,17 +91,17 @@
     "isEnabled": true
   },
   {
+    "id": "www-huyaapi-com",
+    "name": "虎牙资源",
+    "url": "https://www.huyaapi.com/api.php/provide/vod",
+    "detailUrl": "https://www.huyaapi.com",
+    "isEnabled": true
+  },
+  {
     "id": "91md-me",
     "name": "麻豆视频",
     "url": "https://91md.me/api.php/provide/vod",
     "detailUrl": "https://91md.me",
-    "isEnabled": true
-  },
-  {
-    "id": "lbapiby-com",
-    "name": "AIvin",
-    "url": "http://lbapiby.com/api.php/provide/vod",
-    "detailUrl": "http://lbapiby.com",
     "isEnabled": true
   },
   {
