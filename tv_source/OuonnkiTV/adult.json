@@ -77,17 +77,17 @@
     "isEnabled": true
   },
   {
+    "id": "Naixxzy-com",
+    "name": "奶香资源",
+    "url": "https://Naixxzy.com/api.php/provide/vod",
+    "detailUrl": "https://Naixxzy.com",
+    "isEnabled": true
+  },
+  {
     "id": "apilj-com",
     "name": "辣椒资源",
     "url": "https://apilj.com/api.php/provide/vod",
     "detailUrl": "https://apilj.com",
-    "isEnabled": true
-  },
-  {
-    "id": "shayuapi-com",
-    "name": "鲨鱼资源",
-    "url": "https://shayuapi.com/api.php/provide/vod",
-    "detailUrl": "https://shayuapi.com",
     "isEnabled": true
   },
   {
@@ -165,13 +165,6 @@
     "name": "白嫖资源",
     "url": "https://www.kxgav.com/api/json.php",
     "detailUrl": "https://www.kxgav.com",
-    "isEnabled": true
-  },
-  {
-    "id": "xingba111-com",
-    "name": "杏吧资源",
-    "url": "https://xingba222.com/api.php/provide/vod",
-    "detailUrl": "https://xingba111.com",
     "isEnabled": true
   }
 ]
