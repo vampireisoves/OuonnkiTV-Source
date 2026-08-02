@@ -21,13 +21,6 @@
     "isEnabled": true
   },
   {
-    "id": "apiyutu-com",
-    "name": "玉兔资源",
-    "url": "https://apiyutu.com/api.php/provide/vod",
-    "detailUrl": "https://apiyutu.com",
-    "isEnabled": true
-  },
-  {
     "id": "fhapi9-com",
     "name": "番号资源",
     "url": "http://fhapi9.com/api.php/provide/vod",
