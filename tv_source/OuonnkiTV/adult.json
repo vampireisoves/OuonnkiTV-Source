@@ -91,6 +91,13 @@
     "isEnabled": true
   },
   {
+    "id": "shayuapi-com",
+    "name": "鲨鱼资源",
+    "url": "https://shayuapi.com/api.php/provide/vod",
+    "detailUrl": "https://shayuapi.com",
+    "isEnabled": true
+  },
+  {
     "id": "doudouzy-com",
     "name": "豆豆资源",
     "url": "https://api.douapi.cc/api.php/provide/vod",
@@ -102,6 +109,13 @@
     "name": "滴滴资源",
     "url": "https://api.ddapi.cc/api.php/provide/vod",
     "detailUrl": "https://didizy.com",
+    "isEnabled": true
+  },
+  {
+    "id": "heiliaozy-cc",
+    "name": "黑料资源",
+    "url": "https://www.heiliaozyapi.com/api.php/provide/vod",
+    "detailUrl": "https://heiliaozy.cc",
     "isEnabled": true
   },
   {
@@ -151,6 +165,13 @@
     "name": "白嫖资源",
     "url": "https://www.kxgav.com/api/json.php",
     "detailUrl": "https://www.kxgav.com",
+    "isEnabled": true
+  },
+  {
+    "id": "xingba111-com",
+    "name": "杏吧资源",
+    "url": "https://xingba222.com/api.php/provide/vod",
+    "detailUrl": "https://xingba111.com",
     "isEnabled": true
   }
 ]
