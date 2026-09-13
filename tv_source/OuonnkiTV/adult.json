@@ -140,13 +140,6 @@
     "isEnabled": true
   },
   {
-    "id": "souavzyw-com",
-    "name": "souavZY",
-    "url": "https://api.souavzyw.net/api.php/provide/vod",
-    "detailUrl": "https://api.souavzyw.net",
-    "isEnabled": true
-  },
-  {
     "id": "www-msnii-com",
     "name": "美少女",
     "url": "https://www.msnii.com/api/json.php",
