@@ -1,0 +1,68 @@
+name: 每日同步上游仓库
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # UTC02:00 = 北京时间10:00 每日自动同步
+  workflow_dispatch:      # 支持网页手动一键触发同步
+
+env:
+  # ======================【这里只改这一块配置即可】======================
+  UPSTREAM_REPO: "Yesbaiwan/OuonnkiTV-Source"      # 上游仓库 格式 owner/repo
+  TARGET_BRANCH: "main"            # 自己仓库要同步推送的本地分支
+  KEEP_WORKFLOW_FILE: ".github/workflows/sync-upstream.yml" # 需要保护不被上游覆盖的本工作流
+  KEEP_RUNS_COUNT: 5                # 保留多少条旧action运行记录
+  # ====================================================================
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出本地目标分支完整代码
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_PAT }}
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - name: 备份需要保护的工作流脚本
+        run: |
+          mkdir -p /tmp/wf_backup
+          cp ${{ env.KEEP_WORKFLOW_FILE }} /tmp/wf_backup/sync-workflow.yml || true
+
+      - name: 拉取上游仓库最新源码
+        run: |
+          git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
+          git fetch upstream
+
+      - name: 获取上游默认分支 & 强制重置代码
+        run: |
+          UPSTREAM_BRANCH=$(git remote show upstream | grep 'HEAD branch' | awk '{print $NF}')
+          echo "上游仓库默认分支: $UPSTREAM_BRANCH"
+          git reset --hard upstream/$UPSTREAM_BRANCH
+
+      - name: 恢复被保护的本地工作流文件
+        run: |
+          mkdir -p $(dirname ${{ env.KEEP_WORKFLOW_FILE }})
+          cp /tmp/wf_backup/sync-workflow.yml ${{ env.KEEP_WORKFLOW_FILE }}
+          git add ${{ env.KEEP_WORKFLOW_FILE }}
+
+      - name: 提交恢复文件，无变更自动跳过
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: restore self‑protected workflow file" || echo "✅ 无变更，跳过本次提交"
+
+      - name: 强制推送到个人仓库目标分支
+        run: |
+          git push origin ${{ env.TARGET_BRANCH }} --force
+
+      - name: 清理旧Workflow运行记录
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.SYNC_PAT }}
+          repository: ${{ github.repository }}
+          keep_minimum_runs: ${{ env.KEEP_RUNS_COUNT }}
+          delete_workflow_pattern: sync-upstream.yml
+          dry_run: false
